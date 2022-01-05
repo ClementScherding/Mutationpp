@@ -330,9 +330,9 @@ protected:
         double& T,
         double* const p_work,
         const double alpha = 0.0,
-        const double atol = 1.0e-12,
+        const double atol = 1.0e-10,
         const double rtol = 1.0e-12,
-        const int max_iters = 100)
+        const int max_iters = 200)
     {
         using std::cerr;
         const int ns = m_thermo.nSpecies();
