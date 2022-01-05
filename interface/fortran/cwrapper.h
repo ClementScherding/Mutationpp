@@ -230,6 +230,16 @@ void NAME_MANGLE(species_densities)(
     double* const rhoi);
 
 /**
+ * Equilibrates the mixture at a given temperature, pressure, and
+ * elemental composition
+ *
+ * @param T - mixture temperature
+ * @param P - mixture pressure
+ * @param X - elemental mole fractions
+ */
+void NAME_MANGLE(equilibrate)(double* T, double* P);
+
+/**
  * Returns the equilibrium composition of the mixture in species mole fractions
  * given the temperature and pressure.
  *
@@ -268,6 +278,15 @@ double NAME_MANGLE(mixture_frozen_cp_mass)();
 double NAME_MANGLE(mixture_frozen_cv_mass)();
 
 /**
+ * Returns the mixture equilibrium specific heat at constant pressure in J/kg-K.
+ */
+double NAME_MANGLE(mixture_equilibrium_cp_mass)();
+
+/**
+ * Returns the mixture equilibrium specific heat at constant volume in J/kg-K.
+ */
+double NAME_MANGLE(mixture_equilibrium_cv_mass)();
+/**
  * Returns the mixture ratio of specific heats \f$C_p/C_v\f$ which is a unitless 
  * quantity.
  */
@@ -277,6 +296,17 @@ double NAME_MANGLE(mixture_frozen_gamma)();
  * Returns the mixture frozen sound speed in m/s.
  */
 double NAME_MANGLE(mixture_frozen_sound_speed)();
+
+/**
+ * Returns the mixture equilibrium ratio of specific heats \f$C_p/C_v\f$ which is a unitless
+ * quantity.
+ */
+double NAME_MANGLE(mixture_equilibrium_gamma)();
+
+/**
+ * Returns the mixture equilibrium sound speed in m/s.
+ */
+double NAME_MANGLE(mixture_equilibrium_sound_speed)();
 
 /**
  * Returns the species energies (total + internal if multi temperature) in J/kg.
@@ -303,6 +333,12 @@ void NAME_MANGLE(species_s_mass)(double *const s);
  * Returns the mixture enthalpy in J/kg given the mixture temperature and
  * species mass fractions.
  */
+double NAME_MANGLE(mixture_h_minus_h0_mass)();
+
+/**
+ * Returns the mixture enthalpy in J/kg given the mixture temperature and
+ * species mass fractions.
+ */
 double NAME_MANGLE(mixture_h_mass)();
 
 /**
@@ -310,6 +346,12 @@ double NAME_MANGLE(mixture_h_mass)();
  * fractions.
  */
 double NAME_MANGLE(mixture_e_mass)();
+
+/**
+ * Return the mixture entropy in J/kg/K given temperature, density, and mass
+ * fractions.
+ */
+double NAME_MANGLE(mixture_s_mass)();
 
 /**
  * Fills the vector wdot with the net species production rates due to the
@@ -335,6 +377,7 @@ void NAME_MANGLE(net_production_rates)(double* const wdot);
  *
  * @param p_jac  - on return, the jacobian matrix \f$J_{ij}\f$
  */
+//==============================================================================
 void NAME_MANGLE(species_jacobian_rho)(double* const j);
 
 /**
@@ -349,9 +392,14 @@ int NAME_MANGLE(ncollision_pairs)();
 double NAME_MANGLE(viscosity)();
 
 /**
+ * Returns the mixture thermal conductivity vector for a frozen mixture.
+ */
+void NAME_MANGLE(frozen_thermal_conductivity_vector)(double* const lambda);
+
+/**
  * Returns the mixture thermal conductivity for a frozen mixture.
  */
-void NAME_MANGLE(frozen_thermal_conductivity)(double* const lambda);
+double NAME_MANGLE(frozen_thermal_conductivity)();
 
 /**
  * Returns the heavy thermal diffusion ratios for each species.
